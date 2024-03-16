@@ -25,11 +25,11 @@ var dummyLogger = &dummyLoggerType{}
 
 var setLoggerOnce sync.Once
 
-func GetLogger() dummyLoggerI {
+func Get() dummyLoggerI {
 	return logger
 }
 
-func InitLogger(l dummyLoggerI) {
+func Set(l dummyLoggerI) {
 	setLoggerOnce.Do(func() {
 		logger = l
 	})
