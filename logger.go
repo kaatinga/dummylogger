@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-type dummyLoggerI interface {
+type I interface {
 	Errorf(format string, v ...interface{})
 }
 
@@ -13,7 +13,7 @@ var logger = newDummyLogger()
 
 type dummyLoggerType struct{}
 
-func newDummyLogger() dummyLoggerI {
+func newDummyLogger() I {
 	return dummyLogger
 }
 
@@ -25,11 +25,11 @@ var dummyLogger = &dummyLoggerType{}
 
 var setLoggerOnce sync.Once
 
-func Get() dummyLoggerI {
+func Get() I {
 	return logger
 }
 
-func Set(l dummyLoggerI) {
+func Set(l I) {
 	setLoggerOnce.Do(func() {
 		logger = l
 	})
