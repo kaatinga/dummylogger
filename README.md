@@ -4,10 +4,31 @@ A dummy logger for a custom package.
 
 ## Usage
 
+Use the custom logger in your package.
+
+```go
+import (
+    "github.com/kaatinga/dummylogger"
+)
+
+var log = dummylogger.Get
+
+func Init(logger dummylogger.I) {
+    dummylogger.Set(logger)
+}
+```
+
+Use it where you need it in the package.
+
+```go
+func main() {
+    log().Errorf("This is an error message")
+}
+```
+
 Create a custom logger in your project.
 
 ```go
-// Custom logger to pass to a package
 type customLogger bool
 
 var CustomLogger = customLogger(true)
@@ -17,12 +38,14 @@ func (customLogger) Errorf(format string, v ...interface{}) {
 }
 ```
 
-Use the custom logger in your package.
+Pass the custom logger to init the package.
 
 ```go
-import "github.com/kaatinga/dummylogger"
+import (
+    "github.com/yourname/yourpackage"
+)
 
-func (c *CustomType) DoSomething() {
-    dummylogger.CustomLogger.Errorf("Something went wrong %w", err)
+func main() {
+    yourpackage.Init(CustomLogger)
 }
 ```
