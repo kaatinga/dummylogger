@@ -1,3 +1,4 @@
+[![Tests](https://github.com/kaatinga/luna/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/kaatinga/luna/actions/workflows/test.yml)
 # dummylogger
 
 A dummy logger for a custom package.
